@@ -356,6 +356,7 @@
             "mojo",
             "mvn",
             "nbgv",
+            "nimble",
             "nightscout",
             "nix-shell",
             "node",
@@ -4861,6 +4862,55 @@
           "then": {
             "title": "Nix Shell",
             "description": "https://ohmyposh.dev/docs/segments/cli/nix-shell"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "nimble"
+              }
+            }
+          },
+          "then": {
+            "title": "Nimble Segment",
+            "description": "https://ohmyposh.dev/docs/segments/cli/nimble",
+            "properties": {
+              "properties": {
+                "properties": {
+                  "home_enabled": {
+                    "$ref": "#/definitions/home_enabled"
+                  },
+                  "fetch_version": {
+                    "$ref": "#/definitions/fetch_version"
+                  },
+                  "cache_duration": {
+                    "$ref": "#/definitions/cache_duration",
+                    "default": "none"
+                  },
+                  "display_mode": {
+                    "$ref": "#/definitions/display_mode"
+                  },
+                  "missing_command_text": {
+                    "$ref": "#/definitions/missing_command_text"
+                  },
+                  "version_url_template": {
+                    "$ref": "#/definitions/version_url_template"
+                  },
+                  "extensions": {
+                    "type": "array",
+                    "title": "Extensions",
+                    "description": "The extensions to look for when determining if a folder is a Nimble workspace",
+                    "default": [
+                      "nimble.json"
+                    ]
+                  },
+                  "folders": {
+                    "$ref": "#/definitions/folders"
+                  }
+                }
+              }
+            }
           }
         },
         {

@@ -1,0 +1,64 @@
+
+---
+id: nimble
+title: Nimble
+sidebar_label: Nimble
+---
+
+## What
+
+Display the currently active [Nimble][nimble-docs] version (Nim's package manager).
+
+## Sample Configuration
+
+import Config from "@site/src/components/Config.js";
+
+<Config
+  data={{
+    type: "nimble",
+    style: "powerline",
+    powerline_symbol: "\uE0B0",
+    foreground: "#000000",
+    background: "#FFE953",
+    template: " \uE842 {{ .Full }} ",
+  }}
+/>
+
+## Properties
+
+| Name                   |    Type    |    Default     | Description                                                                                                                                                                                                                          |
+| ---------------------- | :--------: | :------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `home_enabled`         | `boolean`  |    `false`     | display the segment in the HOME folder or not                                                                                                                                                                                        |
+| `fetch_version`        | `boolean`  |     `true`     | fetch the Nimble version                                                                                                                                                                                                             |
+| `cache_duration`       |  `string`  |     `24h`      | the duration for which the version will be cached. The duration is a string in the format `1h2m3s` and is parsed using the [time.ParseDuration] function from the Go standard library. To disable the cache, use `none`              |
+| `missing_command_text` |  `string`  |                | text to display when the command is missing                                                                                                                                                                                          |
+| `display_mode`         |  `string`  |   `context`    | <ul><li>`always`: the segment is always displayed</li><li>`files`: the segment is only displayed when file `extensions` listed are present</li><li>`context`: displays the segment when the environment or files is active</li></ul> |
+| `version_url_template` |  `string`  |                | a go [text/template][go-text-template] [template][templates] that creates the URL of the version info / release notes                                                                                                                |
+| `extensions`           | `[]string` | `nimble.json`  | allows to override the default list of file extensions to validate                                                                                                                                                                   |
+| `folders`              | `[]string` |                | allows to override the list of folder names to validate                                                                                                                                                                              |
+
+## Template ([info][templates])
+
+:::note default template
+
+```template
+{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}
+```
+
+:::
+
+### Properties
+
+| Name     | Type     | Description                                        |
+| -------- | -------- | -------------------------------------------------- |
+| `.Full`  | `string` | the full version                                   |
+| `.Major` | `string` | major number                                       |
+| `.Minor` | `string` | minor number                                       |
+| `.Patch` | `string` | patch number                                       |
+| `.URL`   | `string` | URL of the version info / release notes            |
+| `.Error` | `string` | error encountered when fetching the version string |
+
+[go-text-template]: https://golang.org/pkg/text/template/
+[templates]: /docs/configuration/templates
+[nimble-docs]: https://github.com/nim-lang/nimble
+[time.ParseDuration]: https://golang.org/pkg/time/#ParseDuration

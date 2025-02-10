@@ -77,6 +77,7 @@ module.exports = {
             "segments/cli/mvn",
             "segments/cli/nbgv",
             "segments/cli/nix-shell",
+            "segments/cli/nimble",
             "segments/cli/npm",
             "segments/cli/nx",
             "segments/cli/pnpm",
